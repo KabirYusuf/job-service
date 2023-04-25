@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Set;
 
 @Setter
@@ -11,5 +12,5 @@ import java.util.Set;
 public class PostJobRequest {
     private String jobTitle;
     private String jobDescription;
-    private Set<String> jobTechnologies;
+    private Set<String> jobTechnologies = new HashSet<>();
 }
