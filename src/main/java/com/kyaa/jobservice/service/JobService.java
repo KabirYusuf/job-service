@@ -9,4 +9,6 @@ import java.util.List;
 public interface JobService {
     PostJobResponse postJob(PostJobRequest postJobRequest);
     List<JobPost> viewAvailableJobs();
+
+    String deleteJobPost(String jobId);
 }

@@ -4,6 +4,7 @@ import com.kyaa.jobservice.data.dto.request.PostJobRequest;
 import com.kyaa.jobservice.data.dto.response.PostJobResponse;
 import com.kyaa.jobservice.data.model.JobPost;
 import com.kyaa.jobservice.data.repository.JobPostRepository;
+import com.kyaa.jobservice.exception.JobException;
 import com.kyaa.jobservice.service.JobService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -30,5 +31,12 @@ public class JobServiceImpl implements JobService {
     @Override
     public List<JobPost> viewAvailableJobs() {
         return jobPostRepository.findAll();
+    }
+
+    @Override
+    public String deleteJobPost(String jobId) {
+        if (jobPostRepository.findById(jobId).isEmpty())throw new JobException("Job with "+ jobId + " doesnt exist");
+        jobPostRepository.deleteById(jobId);
+        return "Job deleted successfully";
     }
 }
